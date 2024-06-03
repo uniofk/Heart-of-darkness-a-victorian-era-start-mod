@@ -1,0 +1,261 @@
+focus_tree = {
+    id = TUR_focus_tree
+
+    # Reforms of Amcazade Huseyin Pasha focus
+    focus = {
+        id = reforms_of_amcazade_huseyin_pasha
+        icon = GFX_goal_generic_political_reformer
+        x = 2
+        y = 1
+        available = {
+            original_tag = TUR
+        }
+        ```cost = 70```
+        completion_reward = {
+            political_power = 50
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Introduction of new Uniforms focus
+    focus = {
+        id = introduction_of_new_uniforms
+        icon = GFX_goal_generic_manufacturing
+        x = 1
+        y = 2
+        available = {
+            focus = reforms_of_amcazade_huseyin_pasha # Only available if "Reforms of Amcazade Huseyin Pasha" focus is completed
+        }
+        ```cost = 35```
+        completion_reward = {
+            political_power = 20
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Put trust in the Janissaries focus
+    focus = {
+        id = put_trust_in_the_janissaries
+        icon = GFX_goal_generic_political_trust_the_army
+        x = 3
+        y = 2
+        available = {
+            focus = reforms_of_amcazade_huseyin_pasha # Only available if "Reforms of Amcazade Huseyin Pasha" focus is completed
+        }
+        ```cost = 35```
+        completion_reward = {
+            political_power = 20
+        }
+        mutually_exclusive = {
+            focus = discharge_and_kill_the_janissaries # Can't choose "Discharge and kill the Janissaries" if this focus is chosen
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Discharge and kill the Janissaries focus
+    focus = {
+        id = discharge_and_kill_the_janissaries
+        icon = GFX_goal_generic_military_army_historical
+        x = 4
+        y = 2
+        available = {
+            focus = reforms_of_amcazade_huseyin_pasha # Only available if "Reforms of Amcazade Huseyin Pasha" focus is completed
+        }
+        ```cost = 35```
+        mutually_exclusive = {
+            focus = put_trust_in_the_janissaries # Can't choose "Put trust in the Janissaries" if this focus is chosen
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Go with Silhatar Ali Pasha Administratory focus
+    focus = {
+        id = go_with_silhatar_ali_pasha_administratory
+        icon = GFX_goal_generic_political_advisor
+        x = 2
+        y = 3
+        available = {
+            focus = put_trust_in_the_janissaries # Only available if "Put trust in the Janissaries" focus is completed
+        }
+        ```cost = 70```
+        completion_reward = {
+            political_power = 50
+            add_stability = 10
+            army_attack_factor = 5
+            army_defence_factor = 10
+            army_org = 10
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Go with Amcazade Huseyin Pasha Administratory focus
+    focus = {
+        id = go_with_amcazade_huseyin_pasha_administratory
+        icon = GFX_goal_generic_political_advisor
+        x = 4
+        y = 3
+        available = {
+            focus = discharge_and_kill_the_janissaries # Only available if "Discharge and kill the Janissaries" focus is completed
+        }
+        ```cost = 70```
+        completion_reward = {
+            political_power = 50
+            add_stability = -10
+            army_attack_factor = 10
+            army_defence_factor = 10
+            army_org = 5
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Military Reorganization and Indoctrination focus
+    focus = {
+        id = military_reorganization_and_indoctrination
+        icon = GFX_goal_generic_military_reform
+        x = 3
+        y = 4
+        available = {
+            OR = {
+                focus = go_with_silhatar_ali_pasha_administratory
+                focus = go_with_amcazade_huseyin_pasha_administratory
+            }
+        }
+        ```cost = 70```
+        completion_reward = {
+            infantry_equipment = {
+                add_equipment_to_stockpile = {
+                    type = infantry_equipment_1
+                    amount = 1200
+                }
+            }
+            set_country_flag = ottoman_military_reorganization_flag
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # One State, One Religion, One Army focus
+    focus = {
+        id = one_state_one_religion_one_army
+        icon = GFX_goal_generic_political_domination
+        x = 2
+        y = 5
+        available = {
+            focus = military_reorganization_and_indoctrination
+        }
+        ```cost = 70```
+        completion_reward = {
+            add_stability = 10
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Ensure Army Loyalty focus
+    focus = {
+        id = ensure_army_loyalty
+        icon = GFX_goal_generic_political_mobilisation
+        x = 4
+        y = 5
+        available = {
+            focus = military_reorganization_and_indoctrination
+        }
+        ```cost = 70```
+        completion_reward = {
+            add_stability = 10
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Local Conscription in the Balkans focus
+    focus = {
+        id = local_conscription_in_the_balkans
+        icon = GFX_goal_generic_army
+        x = 2
+        y = 6
+        available = {
+            focus = one_state_one_religion_one_army
+        }
+        ```cost = 70```
+        completion_reward = {
+            add_manpower = 30000
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Fund Militias & Pro-Ottoman Groups focus
+    focus = {
+        id = fund_militias_and_pro_ottoman_groups
+        icon = GFX_goal_generic_army_ally
+        x = 4
+        y = 6
+        available = {
+            focus = ensure_army_loyalty
+        }
+        ```cost = 70```
+        completion_reward = {
+            add_stability = 10
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Training and Islamofication of Slavs, Greeks, and Romanians focus
+    focus = {
+        id = training_and_islamofication_of_slavs_greeks_romanians
+        icon = GFX_goal_generic_training
+        x = 2
+        y = 7
+        available = {
+            focus = local_conscription_in_the_balkans
+        }
+        ```cost = 70```
+        completion_reward = {
+            add_manpower = 30000
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+
+    # Recruit New Officers & Integrate the Armies of Mustafa Pasha Koprulu & Buyuk Huseyin Pasha focus
+    focus = {
+        id = recruit_new_officers_integrate_armies
+        icon = GFX_goal_generic_army_reform
+        x = 4
+        y = 7
+        available = {
+            focus = fund_militias_and_pro_ottoman_groups
+        }
+        ```cost = 70```
+        completion_reward = {
+            add_manpower = 15000
+            recruit_character = {
+                character = TUR_Mustafa_II
+                type = field_marshal
+            }
+        }
+        ai_will_do = {
+            factor = 1
+        }
+    }
+}
